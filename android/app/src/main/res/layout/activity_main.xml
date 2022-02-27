@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/button_getDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="getDays" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button_getDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="getDay" />
+
+    <Button
+        android:id="@+id/button_createDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="createDay" />
+
+    <Button
+        android:id="@+id/button_deleteDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deleteDay" />
+
+    <Button
+        android:id="@+id/button_modifyDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="modifyDay" />
+
+
+</LinearLayout>
