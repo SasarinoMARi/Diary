@@ -26,7 +26,11 @@ module.exports = {
                 return;
             }
             
-            res.json(results);
+            var result = [];
+            results.forEach(it => {
+                result.push(it.date);
+            });
+            res.json(result);
         });
         
     },
@@ -35,17 +39,22 @@ module.exports = {
         if(!simpleAuth(req, res)) return;
 
         var date = req.body.date;
+        console.log(`[GET DAY] ${date}`)
         sql.query(
-            `SELECT * FROM days WHERE date = '${date}'`, function (error, results, fields) {
-
-            if (error) {
-                onError(error, res);
-                return;
+            `SELECT * FROM days WHERE date = '${date}'`, 
+            function (error, results, fields) {
+                if (error) {
+                    onError(error, res);
+                    return;
+                }
+                if(results.length == 0)
+                {
+                    onError({sqlMessage: "no match."}, res);
+                    return;
+                }
+                res.json(results[0]);
             }
-            
-            res.json(results);
-        });
-        
+        );        
     },
     // 일기 생성
     createDay: async function (req, res, next) {
@@ -94,7 +103,6 @@ module.exports = {
             res.json({insertId: results.insertId});
         });
     },
-    // 할 일 삭제
     deleteDay: async function (req, res, next) {
         if(!simpleAuth(req, res)) return;
         
@@ -115,7 +123,6 @@ module.exports = {
             res.json(results);
         });
     },
-    // 할 일 수정
     modifyDay : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
         
