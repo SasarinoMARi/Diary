@@ -1,12 +1,11 @@
 package com.sasarinomari.diary
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_day_detail.*
 
-class MainActivity : AppCompatActivity() {
+class DayDetailActivity : AppCompatActivity() {
 
     private val api = object : APICall() {
         override fun onError(message: String) {
@@ -20,12 +19,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_day_detail)
 
-        test.setOnClickListener {
-            val i = Intent(this@MainActivity, DayListActivity::class.java)
-            startActivity(i)
+        val date = intent.getStringExtra("date")!!
+        api.getDay(date) {
+            text_title.text = it.date
+            text_content.text = it.text
         }
-
     }
 }
