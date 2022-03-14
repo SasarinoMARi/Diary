@@ -10,37 +10,13 @@
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="테스트 문구"/>
+        android:text="리스트 보기"/>
 
     <Button
-        android:id="@+id/button_getDays"
+        android:id="@+id/write"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="getDays" />
-
-    <Button
-        android:id="@+id/button_getDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="getDay" />
-
-    <Button
-        android:id="@+id/button_createDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="createDay" />
-
-    <Button
-        android:id="@+id/button_deleteDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="deleteDay" />
-
-    <Button
-        android:id="@+id/button_modifyDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="modifyDay" />
+        android:text="새 일기 작성"/>
 
 
 </LinearLayout>

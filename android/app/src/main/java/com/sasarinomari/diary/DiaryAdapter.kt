@@ -18,6 +18,8 @@ class DiaryAdapter(
     override fun getItem(position: Int): String = items[position]
     override fun getItemId(position: Int): Long = position.toLong()
 
+    val converter = DateConverter()
+
     @SuppressLint("SetTextI18n")
     override fun getView(position: Int, view: View?, parent: ViewGroup?): View {
         var convertView = view
@@ -25,7 +27,7 @@ class DiaryAdapter(
             .inflate(R.layout.item_diary, parent, false)
         val item = items[position]
 
-        convertView!!.text_date.text = item
+        convertView!!.text_date.text = converter.toDisplayable(item)
 
         convertView.setOnClickListener {
             val i = Intent(context, DayDetailActivity::class.java)

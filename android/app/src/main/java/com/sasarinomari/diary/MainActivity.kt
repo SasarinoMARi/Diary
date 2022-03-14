@@ -27,5 +27,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
 
+        write.setOnClickListener {
+            val i = Intent(this@MainActivity, DayWriteActivity::class.java)
+            startActivity(i)
+        }
+
     }
 }

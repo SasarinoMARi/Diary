@@ -16,6 +16,7 @@
         <activity android:name=".DayListActivity" />
         <activity android:name=".DayDetailActivity"/>
         <activity android:name=".WriteActivity" />
+        <activity android:name=".DayWriteActivity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
