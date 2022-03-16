@@ -4,20 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DayDetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".DayDetailActivity">
 
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="제목"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        tools:ignore="HardcodedText" />
 
-    <TextView
-        android:id="@+id/text_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_modify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="내용"/>
+        android:text="@string/Modify" />
 
 </LinearLayout>
