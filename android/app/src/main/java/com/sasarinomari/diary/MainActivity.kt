@@ -4,9 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DiaryActivity() {
 
     private val api = object : APICall() {
         override fun onError(message: String) {
@@ -33,4 +34,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }

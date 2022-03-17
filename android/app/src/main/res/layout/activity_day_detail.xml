@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/paper_texture"
     android:orientation="vertical"
+    android:paddingTop="@dimen/activity_padding_top"
+    android:paddingBottom="@dimen/activity_padding_bottom"
     tools:context=".DayDetailActivity">
 
     <TextView

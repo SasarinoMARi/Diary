@@ -9,7 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_day_detail.*
 
-class DayDetailActivity : AppCompatActivity() {
+class DayDetailActivity : DiaryActivity() {
 
     private val api = object : APICall() {
         override fun onError(message: String) {

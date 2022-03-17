@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_write.*
 
-class WriteActivity : AppCompatActivity() {
+class WriteActivity : DiaryActivity() {
 
     private val api = object : APICall() {
         override fun onError(message: String) {

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_day_write.*
 import java.time.LocalDate
 import java.util.*
 
-class DayModifyActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
+class DayModifyActivity : DiaryActivity(), DatePickerDialog.OnDateSetListener {
     private val conv = DateConverter()
     private val api = object : APICall() {
         override fun onError(message: String) {
