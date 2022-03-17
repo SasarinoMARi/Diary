@@ -1,7 +1,6 @@
 package com.sasarinomari.diary
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
@@ -10,6 +9,7 @@ import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_day_detail.*
 
 class DayDetailActivity : DiaryActivity() {
+    private val conv = DateConverter()
 
     private val api = object : APICall() {
         override fun onError(message: String) {
@@ -39,7 +39,7 @@ class DayDetailActivity : DiaryActivity() {
     private fun fetchDay() {
         val date = intent.getStringExtra("date")!!
         api.getDay(date) { diary ->
-            text_title.text = diary.date
+            text_title.text = conv.toDisplayable(diary.date!!)
             text_content.text = diary.text
 
             button_modify.setOnClickListener {

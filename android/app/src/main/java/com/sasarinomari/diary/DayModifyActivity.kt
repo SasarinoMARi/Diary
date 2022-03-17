@@ -1,14 +1,12 @@
 package com.sasarinomari.diary
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_day_write.*
-import java.time.LocalDate
 import java.util.*
 
 class DayModifyActivity : DiaryActivity(), DatePickerDialog.OnDateSetListener {

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Diary</string>
     <string name="Modify">수정</string>
+    <string name="change_date">날짜 수정</string>
+    <string name="apply">등록</string>
+    <string name="modify_complete">수정 완료</string>
+    <string name="hint">내용을 입력하세요</string>
 </resources>

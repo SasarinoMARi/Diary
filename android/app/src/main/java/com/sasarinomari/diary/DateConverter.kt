@@ -7,7 +7,7 @@ import java.util.*
 @SuppressLint("SimpleDateFormat")
 class DateConverter {
     private val dbFormat = SimpleDateFormat("yyyy-MM-dd")
-    private val humanFormat = SimpleDateFormat("yyyy년 MM월 dd일")
+    private val humanFormat = SimpleDateFormat("yyyy년 MM월 dd일 EE요일")
 
     fun toDisplayable(dbString: String) : String {
         val date = dbFormat.parse(dbString)
@@ -15,9 +15,12 @@ class DateConverter {
     }
 
     fun toSystematic(readableString: String) : String {
-         val date = humanFormat.parse(readableString)
-         return dbFormat.format(date)
-//        return readableString.replace("년 ", "-").replace("월 ", "-").replace("일", "")
+//         val date = humanFormat.parse(readableString)
+//         return dbFormat.format(date)
+        return readableString.replace("년 ", "-")
+            .replace("월 ", "-")
+            .replace("일", "")
+            .substring(0,10)
     }
 
     fun toDisplayable(year: Int, month: Int, day: Int) : String {

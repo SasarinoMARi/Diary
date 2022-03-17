@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.ListAdapter
 import android.widget.SimpleAdapter
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_day_list.*
 import kotlinx.android.synthetic.main.item_diary.view.*
 
