@@ -23,16 +23,34 @@ class DayListActivity : DiaryActivity() {
         }
     }
 
+    private var sortOption = "Default"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_list)
 
+        button_sort_default.setOnClickListener {
+            sortOption = "Default"
+            fetch()
+        }
+        button_sort_added.setOnClickListener {
+            sortOption = "Recent"
+            fetch()
+        }
+        button_sort_modified.setOnClickListener {
+            sortOption = "LastModified"
+            fetch()
+        }
 
-        api.getDays {
+        fetch()
+
+    }
+
+    private fun fetch() {
+        api.getDays(sortOption) {
             val adapter = buildAdapter(it)
             listview.adapter = adapter
         }
-
     }
 
     private fun buildAdapter(diaryList: Array<String>): ListAdapter? {

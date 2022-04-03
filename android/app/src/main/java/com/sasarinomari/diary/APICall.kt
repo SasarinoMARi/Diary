@@ -14,8 +14,8 @@ abstract class APICall {
 
     // region Task API
 
-    fun getDays(callback: (Array<String>)->Unit) {
-        val call = APIInterface.api.getDays(token!!)
+    fun getDays(option: String, callback: (Array<String>)->Unit) {
+        val call = APIInterface.api.getDays(token!!, option)
         call.enqueue(object : Callback<Array<String>> {
             override fun onResponse(call: Call<Array<String>>, response: Response<Array<String>>) {
                 if (response.isSuccessful) {

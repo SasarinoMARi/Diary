@@ -14,7 +14,12 @@
 
         <activity android:name=".DayListActivity" />
         <activity android:name=".DayDetailActivity"/>
-        <activity android:name=".DayWriteActivity" />
+        <activity android:name=".DayWriteActivity">
+            <intent-filter>
+                <action android:name="com.sasarinomari.diary.write"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".DayModifyActivity" />
 
         <activity android:name=".MainActivity">

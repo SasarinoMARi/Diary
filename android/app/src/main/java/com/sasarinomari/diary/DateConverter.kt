@@ -17,18 +17,16 @@ class DateConverter {
     fun toSystematic(readableString: String) : String {
 //         val date = humanFormat.parse(readableString)
 //         return dbFormat.format(date)
-        return readableString.replace("년 ", "-")
+        var str = readableString.replace("년 ", "-")
             .replace("월 ", "-")
             .replace("일", "")
-            .substring(0,10)
+        if(str.length > 10) str = str.substring(0, 10)
+        return str
+
     }
 
     fun toDisplayable(year: Int, month: Int, day: Int) : String {
         return "${year}년 ${month}월 ${day}일"
-    }
-
-    fun toSystematic(year: Int, month: Int, day: Int) : String {
-        return "${year}-${month}-${day}"
     }
 
     fun toDisplayable(date: Date) : String {
