@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 interface APIInterface {
     @GET("getDays")
-    fun getDays(@Header("key") token:String): Call<Array<String>>
+    fun getDays(@Header("key") token:String, @Header("option") option:String): Call<Array<String>>
     @POST("getDay")
     fun getDay(@Header("key") token:String, @Body body: DiaryModel): Call<DiaryModel>
     @POST("createDay")

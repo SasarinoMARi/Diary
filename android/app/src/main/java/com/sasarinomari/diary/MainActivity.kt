@@ -1,11 +1,13 @@
 package com.sasarinomari.diary
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DiaryActivity() {
 
     private val api = object : APICall() {
         override fun onError(message: String) {
@@ -21,43 +23,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button_getDays.setOnClickListener {
-            api.getDays {
-                for(date in it) {
-                    Log.i("API_RESULT", date)
-                }
-            }
+        test.setOnClickListener {
+            val i = Intent(this@MainActivity, DayListActivity::class.java)
+            startActivity(i)
         }
 
-        button_getDay.setOnClickListener {
-            api.getDay("2000-01-01") {
-                Log.i("API_RESULT", "${it.text}")
-            }
+        write.setOnClickListener {
+            val i = Intent(this@MainActivity, DayWriteActivity::class.java)
+            startActivity(i)
         }
 
-        button_createDay.setOnClickListener {
-            val model = DiaryModel()
-            model.text = "안드로이드에서 생성된 본문"
-            model.date = "2000-01-01"
-
-            api.createDay(model) {
-                Log.i("API_RESULT", "OK")
-            }
-        }
-        button_modifyDay.setOnClickListener {
-            val model = DiaryModel()
-            model.idx = 353
-            model.text = "안드로이드에서 생성된 본문 2"
-            model.date = "2000-01-02"
-
-            api.modifyDay(model) {
-                Log.i("API_RESULT", "OK")
-            }
-        }
-        button_deleteDay.setOnClickListener {
-            api.deleteDay(353) {
-                Log.i("API_RESULT", "OK")
-            }
-        }
     }
+
 }
