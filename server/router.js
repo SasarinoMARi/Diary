@@ -18,8 +18,24 @@ module.exports = {
     getDays : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
 
+        // 옵션 파싱
+        let option = req.headers.option;
+        var orderQuery = "";
+        // 등록일자순 정렬
+        if(option == "Recent") {
+            orderQuery = "ORDER BY idx desc";
+        } 
+        // 최근 수정일순 정렬
+        else if(option == "LastModified") {
+            orderQuery = "ORDER BY last_modify asc";
+        } 
+        // 일기 날짜순 정렬
+        else {
+            orderQuery = "ORDER BY date desc";
+        }
+
         sql.query(
-            `SELECT date FROM days`, function (error, results, fields) {
+            `SELECT date FROM days ${orderQuery}`, function (error, results, fields) {
 
             if (error) {
                 onError(error);
@@ -55,6 +71,24 @@ module.exports = {
                 res.json(results[0]);
             }
         );        
+    },
+    getRandomDay : async function(req, res, next) {
+        if(!simpleAuth(req, res)) return;
+
+        console.log(`[GET RDAY]`)
+        sql.query(
+            `SELECT * FROM days ORDER BY RAND() LIMIT 1`, function (error, results, fields) {
+                if (error) {
+                    onError(error, res);
+                    return;
+                }
+                if(results.length == 0)
+                {
+                    onError({sqlMessage: "no match."}, res);
+                    return;
+                }
+                res.json(results[0]);
+        });      
     },
     // 일기 생성
     createDay: async function (req, res, next) {
