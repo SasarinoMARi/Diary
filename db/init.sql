@@ -5,7 +5,7 @@ CREATE TABLE `days` (
 	`date` DATE NOT NULL COMMENT '일기 날짜',
 	`text` TEXT NOT NULL COMMENT '일기 내용',
 	`last_modify` DATE NULL DEFAULT NULL COMMENT '마지막 수정일',
-	`felling` TINYINT NULL DEFAULT NULL COMMENT '기분',
+	`feeling` TINYINT NULL DEFAULT NULL COMMENT '기분',
 	PRIMARY KEY (`idx`)
 )
 COLLATE='utf8_general_ci';

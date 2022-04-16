@@ -21,7 +21,7 @@ app.use(express.json())
 /*
  * API Endpoints
  */
-app.get('/getDays', router.getDays);
+app.post('/getDays', router.getDays);
 app.post('/getDay', router.getDay);
 app.post('/modifyDay', router.modifyDay);
 app.post('/createDay', router.createDay);
