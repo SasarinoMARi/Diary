@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Diary">
 
-        <activity android:name=".DayListActivity" />
         <activity android:name=".DayDetailActivity"/>
         <activity android:name=".DayWriteActivity">
             <intent-filter>
@@ -21,7 +20,6 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        <activity android:name=".DayModifyActivity" />
 
         <activity android:name=".MainActivity">
             <intent-filter>

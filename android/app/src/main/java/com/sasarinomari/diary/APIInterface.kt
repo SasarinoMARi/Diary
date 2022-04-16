@@ -9,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface APIInterface {
-    @GET("getDays")
-    fun getDays(@Header("key") token:String, @Header("option") option:String): Call<Array<String>>
+    @POST("getDays")
+    fun getDays(@Header("key") token:String, @Body body: GetDiaryParameter): Call<Array<DiaryModel>>
     @POST("getDay")
     fun getDay(@Header("key") token:String, @Body body: DiaryModel): Call<DiaryModel>
     @POST("createDay")
@@ -22,12 +22,13 @@ interface APIInterface {
 
     companion object {
         private val BASE_URL = ""
+        const val token: String = ""
 
         private val gson = GsonBuilder()
             .setLenient()
             .create()
 
-        val okHttpClient = OkHttpClient
+        private val okHttpClient = OkHttpClient
             .Builder()
             .build()
 

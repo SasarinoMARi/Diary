@@ -6,41 +6,61 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
 import android.widget.Toast
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_day_write.*
-import java.time.LocalDate
 import java.util.*
 
-class DayWriteActivity : DiaryActivity(), DatePickerDialog.OnDateSetListener {
+class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     private val conv = DateConverter()
     private val api = object : APICall() {
         override fun onError(message: String) {
             Log.e("Error", message)
         }
+    }
 
-        override fun onMessage(message: String) {
-            Log.i("Activity", message)
-        }
+    private val origin by lazy {
+        val json = intent.getStringExtra("diary")?: return@lazy null
+        Gson().fromJson(json, DiaryModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_write)
 
-        text_title.text = conv.toDisplayable(Date())
-
         button_set_date_today.setOnClickListener {
             val f = DatePickerFragment(this@DayWriteActivity)
             f.show(supportFragmentManager, "DatePicker")
         }
 
-        button_ok.setOnClickListener {
-            val model = DiaryModel()
-            model.date = conv.toSystematic(text_title.text.toString())
-            model.text = text_content.text.toString()
+        if(origin == null) {
+            text_title.text = conv.toDisplayable(Date())
+            button_ok.setOnClickListener {
+                val model = DiaryModel()
+                model.date = conv.toSystematic(text_title.text.toString())
+                model.text = text_content.text.toString()
 
-            api.createDay(model) {
-                Toast.makeText(this@DayWriteActivity, "일기 등록을 완료했습니다.", Toast.LENGTH_LONG).show()
-                finish()
+                api.createDay(model) {
+                    Toast.makeText(this@DayWriteActivity, "일기를 등록했습니다.", Toast.LENGTH_LONG).show()
+                    setResult(RESULT_OK)
+                    finish()
+                }
+            }
+        }
+        else {
+            origin?.let { diary ->
+                text_title.text = conv.toDisplayable(diary.date)
+                text_content.setText(diary.text)
+
+                button_ok.setOnClickListener {
+                    diary.date = conv.toSystematic(text_title.text.toString())
+                    diary.text = text_content.text.toString()
+
+                    api.modifyDay(diary) {
+                        Toast.makeText(this@DayWriteActivity, "일기를 수정했습니다.", Toast.LENGTH_LONG).show()
+                        setResult(RESULT_OK)
+                        finish()
+                    }
+                }
             }
         }
 
