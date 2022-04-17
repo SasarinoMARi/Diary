@@ -47,6 +47,24 @@ abstract class APICall {
         })
     }
 
+    fun getRandomDay(isFindingCorrectionTarget: Boolean, callback: (DiaryModel)->Unit) {
+        val call = APIInterface.api.getRandomDay(APIInterface.token, isFindingCorrectionTarget)
+        call.enqueue(object : Callback<DiaryModel> {
+            override fun onResponse(call: Call<DiaryModel>, response: Response<DiaryModel>) {
+                if (response.isSuccessful) {
+                    val result = response.body()!!
+                    callback(result)
+                } else {
+                    onError("${response.code()} : ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<DiaryModel>, t: Throwable) {
+                onError(t.toString())
+            }
+        })
+    }
+
     fun createDay(task: DiaryModel, callback: (JsonObject)->Unit) {
         val call = APIInterface.api.createDay(APIInterface.token, task)
         call.enqueue(object : Callback<JsonObject> {

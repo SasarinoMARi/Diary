@@ -13,6 +13,8 @@ interface APIInterface {
     fun getDays(@Header("key") token:String, @Body body: GetDiaryParameter): Call<Array<DiaryModel>>
     @POST("getDay")
     fun getDay(@Header("key") token:String, @Body body: DiaryModel): Call<DiaryModel>
+    @GET("getRandomDay")
+    fun getRandomDay(@Header("key") token:String, @Header("isFindingCorrectionTarget") isFindingCorrectionTarget: Boolean): Call<DiaryModel>
     @POST("createDay")
     fun createDay(@Header("key") token:String, @Body body: DiaryModel): Call<JsonObject>
     @POST("modifyDay")

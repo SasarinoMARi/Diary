@@ -25,6 +25,41 @@
         android:paddingBottom="10dp" />
 
     <LinearLayout
+        android:id="@+id/button_random_correct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="@string/CorrectRandomDay"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/button_random_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_sans_semibold"
+            android:text="@string/SelectRandomDay"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/button_write"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,5 +76,4 @@
             android:textSize="18sp" />
 
     </LinearLayout>
-
 </LinearLayout>

@@ -55,6 +55,14 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this@MainActivity, DayWriteActivity::class.java)
             resultLauncher.launch(i)
         }
+        button_random_view.setOnClickListener {
+            val i = Intent(this@MainActivity, SelectRandomDayActivity::class.java)
+            resultLauncher.launch(i)
+        }
+        button_random_correct.setOnClickListener {
+            val i = Intent(this@MainActivity, CorrectingRandomDayActivity::class.java)
+            resultLauncher.launch(i)
+        }
 
         getDiary()
     }

@@ -20,6 +20,18 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".CorrectingRandomDayActivity">
+            <intent-filter>
+                <action android:name="com.sasarinomari.diary.random_correcting"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".SelectRandomDayActivity">
+            <intent-filter>
+                <action android:name="com.sasarinomari.diary.random_select"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>

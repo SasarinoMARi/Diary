@@ -8,4 +8,6 @@
     <string name="random">무작위 선택</string>
     <string name="random_sharpening">무작위 첨삭</string>
     <string name="WriteDiary">오늘 하루를 기억하기</string>
+    <string name="SelectRandomDay">언젠가의 기억 떠올리기</string>
+    <string name="CorrectRandomDay">오래된 일기 첨삭하기</string>
 </resources>
