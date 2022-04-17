@@ -11,20 +11,33 @@ import kotlinx.android.synthetic.main.activity_day_detail.*
 
 class DayDetailActivity : AppCompatActivity() {
     private val conv = DateConverter()
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+            if(it.resultCode == RESULT_OK) {
+                val diary = Gson().fromJson(it.data?.getStringExtra("diary"), DiaryModel::class.java)
+                if(diary!=null) {
+                    initializeViewWithDiary(diary)
+                }
+                this@DayDetailActivity.setResult(RESULT_OK)
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_detail)
 
         val diary = Gson().fromJson(intent.getStringExtra("diary"), DiaryModel::class.java)!!
+        initializeViewWithDiary(diary)
+    }
 
+    private fun initializeViewWithDiary(diary: DiaryModel) {
         text_title.text = conv.toDisplayable(diary.date)
         text_content.text = diary.text
 
         button_modify.setOnClickListener {
             val i = Intent(this@DayDetailActivity, DayWriteActivity::class.java)
             i.putExtra("diary", Gson().toJson(diary))
-            startActivity(i)
+            resultLauncher.launch(i)
         }
     }
 }
