@@ -20,7 +20,7 @@ module.exports = {
     getDays : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
 
-        const limit = 20;
+        const limit = 100;
         const offset = req.body.page ? req.body.page * limit : 0;
 
         var orderBy;
@@ -70,9 +70,13 @@ module.exports = {
     getRandomDay : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
 
+        var mode = req.header.isFindingCorrectionTarget;
+        var isFindingCorrectionTarget = "";
+        if(mode) isFindingCorrectionTarget = "last_modify ASC,"
+
         console.log(`[GET RDAY]`)
         sql.query(
-            `SELECT * FROM days ORDER BY RAND() LIMIT 1`, function (error, results, fields) {
+            `SELECT * FROM days ORDER BY ${isFindingCorrectionTarget} RAND() LIMIT 1`, function (error, results, fields) {
                 if (error) {
                     onError(error, res);
                     return;

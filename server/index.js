@@ -23,6 +23,7 @@ app.use(express.json())
  */
 app.post('/getDays', router.getDays);
 app.post('/getDay', router.getDay);
+app.get('/getRandomDay', router.getRandomDay);
 app.post('/modifyDay', router.modifyDay);
 app.post('/createDay', router.createDay);
 app.post('/deleteDay', router.deleteDay)
