@@ -7,6 +7,7 @@ import android.widget.AbsListView
 import android.widget.AdapterView
 import android.widget.ListAdapter
 import android.widget.SimpleAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,6 +20,13 @@ class MainActivity : AppCompatActivity() {
     }
     private val fetchOption = GetDiaryParameter()
     private val adapter = DiaryAdapter(this)
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+            if(it.resultCode == RESULT_OK) {
+                adapter.clear()
+                getDiary()
+            }
+        }
 
     private var lastItemVisibleFlag = false     // 스크롤이 맨 밑인지
     private var mLockListView = false           // 현재 데이터를 가져오는 중인지
@@ -26,6 +34,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        adapter.setActivityResultLauncher(resultLauncher)
 
         listview.adapter = adapter
         listview.setOnScrollListener(object: AbsListView.OnScrollListener {
@@ -43,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         button_write.setOnClickListener {
             val i = Intent(this@MainActivity, DayWriteActivity::class.java)
-            startActivity(i)
+            resultLauncher.launch(i)
         }
 
         getDiary()

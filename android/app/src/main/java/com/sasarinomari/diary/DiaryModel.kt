@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.activity.result.ActivityResultLauncher
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.synthetic.main.item_diary.view.*
@@ -28,6 +29,10 @@ class DiaryModel {
 class DiaryAdapter(private val context: Context) : BaseAdapter() {
     private val df = SimpleDateFormat("yyyy-MM-dd EEEE hh:mm:ss", Locale.getDefault())
     private val items = ArrayList<DiaryModel>()
+    private var resultLauncher: ActivityResultLauncher<Intent>? = null
+    fun setActivityResultLauncher(launcher: ActivityResultLauncher<Intent>) {
+        this.resultLauncher = launcher
+    }
 
     companion object {
         private val dateConvertor = DateConverter()
@@ -54,7 +59,8 @@ class DiaryAdapter(private val context: Context) : BaseAdapter() {
         convertView.setOnClickListener {
             val intent = Intent(context, DayDetailActivity::class.java)
             intent.putExtra("diary", Gson().toJson(item))
-            context.startActivity(intent)
+            if(resultLauncher!=null) resultLauncher!!.launch(intent)
+            else context.startActivity(intent)
         }
 
         val previewMaxLength = 100

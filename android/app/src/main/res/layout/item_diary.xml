@@ -29,7 +29,6 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunito_sans_light"
             android:text="일기 내용이 미리 보여질 부분입니다.\n전체가 보여지는건 아니고 대략 두 세줄 정도만 보여지면 적절하지 않을까요..."
             android:textSize="14sp"

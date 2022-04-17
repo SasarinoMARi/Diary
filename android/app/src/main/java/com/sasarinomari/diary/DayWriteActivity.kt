@@ -1,6 +1,7 @@
 package com.sasarinomari.diary
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +42,9 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
 
                 api.createDay(model) {
                     Toast.makeText(this@DayWriteActivity, "일기를 등록했습니다.", Toast.LENGTH_LONG).show()
-                    setResult(RESULT_OK)
+                    val i = Intent()
+                    i.putExtra("diary", Gson().toJson(model))
+                    setResult(RESULT_OK, i)
                     finish()
                 }
             }
@@ -57,7 +60,9 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
 
                     api.modifyDay(diary) {
                         Toast.makeText(this@DayWriteActivity, "일기를 수정했습니다.", Toast.LENGTH_LONG).show()
-                        setResult(RESULT_OK)
+                        val i = Intent()
+                        i.putExtra("diary", Gson().toJson(diary))
+                        setResult(RESULT_OK, i)
                         finish()
                     }
                 }
