@@ -20,7 +20,7 @@ module.exports = {
     getDays : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
 
-        const limit = 100;
+        const limit = 20;
         const offset = req.body.page ? req.body.page * limit : 0;
 
         var orderBy;
@@ -91,11 +91,14 @@ module.exports = {
     },
     createDay: async function (req, res, next) {
         if(!simpleAuth(req, res)) return;
-        console.log(`[CREATE DAY] ${req.body.date}`)
+        console.log(`[CREATE DAY] ${req.body.date}`);
+        
+        if(!req.body.feeling) req.body.feeling = 'null';
 
-        let query = `INSERT INTO days (date, text, feeling, last_modify) VALUES (?,${sql.escape(req.body.text)},?,?)`;
-        let params = [req.body.date, req.body.feeling, time().format("YYYY-MM-DD")]
-        sql.query(query, params, function (error, results, fields) {
+        let query = `
+            INSERT INTO days (date, text, feeling, last_modify) 
+            VALUES (${req.body.date},${sql.escape(req.body.text)},${req.body.feeling},'${time().format("YYYY-MM-DD")}')`;
+        sql.query(query, function (error, results, fields) {
             if (error) {
                 onError(error, res);
                 return;
@@ -127,10 +130,13 @@ module.exports = {
     modifyDay : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
         console.log(`[MODIFY DAY] ${req.body.date}`)
+
+        if(!req.body.feeling) req.body.feeling = 'null';
         
-        let query = `UPDATE days SET \`date\`=?, \`text\`=${sql.escape(req.body.text)}, feeling=?, last_modify=? WHERE idx='${req.body.idx}'`;
-        let params = [req.body.date, req.body.feeling, time().format("YYYY-MM-DD")];
-        sql.query(query, params, function (error, results) {
+        let query = `
+            UPDATE days SET \`date\`='${req.body.date}',  \`text\`=${sql.escape(req.body.text)},
+            feeling=${req.body.feeling}, last_modify='${time().format("YYYY-MM-DD")}' WHERE idx='${req.body.idx}'`;
+        sql.query(query, function (error, results) {
             if (error) {
                 onError(error, res);
                 return;
