@@ -10,4 +10,8 @@
     <string name="WriteDiary">오늘 하루를 기억하기</string>
     <string name="SelectRandomDay">언젠가의 기억 떠올리기</string>
     <string name="CorrectRandomDay">오래된 일기 첨삭하기</string>
+    <string name="Delete">삭제</string>
+    <string name="Cancel">취소</string>
+    <string name="OK">OK</string>
+    <string name="DeleteConfirmDialog">정말 일기를 삭제할까요?</string>
 </resources>

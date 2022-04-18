@@ -40,6 +40,7 @@
                     android:fontFamily="@font/nunito_sans_semibold"
                     android:text="2022년 3월 17일 목요일"
                     android:textAlignment="center"
+                    android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold"
                     tools:ignore="HardcodedText" />
@@ -51,15 +52,21 @@
                     android:background="@color/white" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/text_content"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/nunito_sans_light"
-                android:text="내용"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                tools:ignore="HardcodedText" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_sans_light"
+                    android:text="내용"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:ignore="HardcodedText" />
+            </ScrollView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -77,7 +84,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/Modify" />
+                    android:text="@string/Modify"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_delete"
+                style="@style/Theme.Diary.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Delete"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
