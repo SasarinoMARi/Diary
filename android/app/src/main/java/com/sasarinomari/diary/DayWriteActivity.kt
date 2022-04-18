@@ -1,10 +1,12 @@
 package com.sasarinomari.diary
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.Toast
 import com.google.gson.Gson
@@ -69,10 +71,24 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
             }
         }
 
+        text_content.requestFocus()
+        window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
     }
 
     override fun onDateSet(obj: DatePicker?, year: Int, month: Int, date: Int) {
         val text = conv.toDisplayable(year, month+1, date)
         text_title.text = text
+    }
+
+    override fun onBackPressed() {
+        val adb= AlertDialog.Builder(this)
+        adb.setTitle(getString(R.string.QuitConfirmDialog))
+        adb.setPositiveButton(getString(R.string.OK)) { dialog, which ->
+            super.onBackPressed()
+        }
+        adb.setNegativeButton(getString(R.string.Cancel)) { dialog, which ->
+            //finish()
+        }
+        adb.show()
     }
 }
