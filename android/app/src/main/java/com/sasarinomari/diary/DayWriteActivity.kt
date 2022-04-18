@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_day_write.*
 import java.util.*
@@ -26,6 +27,14 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         Gson().fromJson(json, DiaryModel::class.java)
     }
 
+    private val resultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()) {
+        if(it.resultCode == RESULT_OK) {
+            setResult(RESULT_OK, it.data)
+            finish()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_day_write)
@@ -36,7 +45,9 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
         }
 
         if(origin == null) {
-            text_title.text = conv.toDisplayable(Date())
+            val today = Date()
+
+            text_title.text = conv.toDisplayable(today)
             button_ok.setOnClickListener {
                 val model = DiaryModel()
                 model.date = conv.toSystematic(text_title.text.toString())
@@ -50,6 +61,22 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
                     finish()
                 }
             }
+
+            api.getDaysWithDate(conv.toSystematic(today)) {
+                if(it.isNotEmpty()) {
+                    val adb= AlertDialog.Builder(this)
+                    adb.setTitle(getString(R.string.ContinueConfirmDialog))
+                    adb.setPositiveButton(getString(R.string.OK)) { dialog, which ->
+                        intent.putExtra("diary", Gson().toJson(it[0]))
+                        resultLauncher.launch(intent)
+                    }
+                    adb.setNegativeButton(getString(R.string.Cancel)) { dialog, which ->
+
+                    }
+                    adb.show()
+                }
+            }
+
         }
         else {
             origin?.let { diary ->

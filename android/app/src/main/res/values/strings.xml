@@ -15,4 +15,5 @@
     <string name="OK">OK</string>
     <string name="DeleteConfirmDialog">정말 일기를 삭제할까요?</string>
     <string name="QuitConfirmDialog">정말 나갈까요?</string>
+    <string name="ContinueConfirmDialog">오늘 날짜로 기록된 일기가 있습니다.\n이어서 쓸까요?</string>
 </resources>

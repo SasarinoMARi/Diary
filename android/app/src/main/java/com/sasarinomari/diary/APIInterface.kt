@@ -11,8 +11,8 @@ import retrofit2.http.*
 interface APIInterface {
     @POST("getDays")
     fun getDays(@Header("key") token:String, @Body body: GetDiaryParameter): Call<Array<DiaryModel>>
-    @POST("getDay")
-    fun getDay(@Header("key") token:String, @Body body: DiaryModel): Call<DiaryModel>
+    @GET("getDaysWithDate")
+    fun getDaysWithDate(@Header("key") token:String, @Header("date") date:String): Call<Array<DiaryModel>>
     @GET("getRandomDay")
     fun getRandomDay(@Header("key") token:String, @Header("isFindingCorrectionTarget") isFindingCorrectionTarget: Boolean): Call<DiaryModel>
     @POST("createDay")

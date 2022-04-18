@@ -27,12 +27,10 @@ abstract class APICall {
         })
     }
 
-    fun getDay(date: String, callback: (DiaryModel)->Unit) {
-        val task = DiaryModel()
-        task.date = date
-        val call = APIInterface.api.getDay(APIInterface.token, task)
-        call.enqueue(object : Callback<DiaryModel> {
-            override fun onResponse(call: Call<DiaryModel>, response: Response<DiaryModel>) {
+    fun getDaysWithDate(date: String, callback: (Array<DiaryModel>)->Unit) {
+        val call = APIInterface.api.getDaysWithDate(APIInterface.token, date)
+        call.enqueue(object : Callback<Array<DiaryModel>> {
+            override fun onResponse(call: Call<Array<DiaryModel>>, response: Response<Array<DiaryModel>>) {
                 if (response.isSuccessful) {
                     val result = response.body()!!
                     callback(result)
@@ -41,7 +39,7 @@ abstract class APICall {
                 }
             }
 
-            override fun onFailure(call: Call<DiaryModel>, t: Throwable) {
+            override fun onFailure(call: Call<Array<DiaryModel>>, t: Throwable) {
                 onError(t.toString())
             }
         })
