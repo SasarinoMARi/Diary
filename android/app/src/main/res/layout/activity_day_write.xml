@@ -33,6 +33,7 @@
                 android:fontFamily="@font/nunito_sans_semibold"
                 android:text="2022년 3월 17일 목요일"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
@@ -46,7 +47,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/change_date" />
+                    android:text="@string/change_date"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
 
@@ -88,7 +90,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/apply" />
+                    android:text="@string/apply"
+                    android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
 

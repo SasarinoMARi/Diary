@@ -14,7 +14,9 @@
         android:theme="@style/Theme.Diary">
 
         <activity android:name=".DayDetailActivity"/>
-        <activity android:name=".DayWriteActivity">
+        <activity
+            android:name=".DayWriteActivity"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.sasarinomari.diary.write"/>
                 <category android:name="android.intent.category.DEFAULT"/>
