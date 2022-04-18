@@ -46,26 +46,22 @@ module.exports = {
         });
         
     },
-    getDay : async function(req, res, next) {
+    getDaysWithDate : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
+        if(!req.headers.date) {
+            res.statusCode = 500;
+            res.send("");
+            return;
+        }
 
-        var date = req.body.date;
-        console.log(`[GET DAY] ${date}`)
-        sql.query(
-            `SELECT * FROM days WHERE date = '${date}'`, 
-            function (error, results, fields) {
-                if (error) {
-                    onError(error, res);
-                    return;
-                }
-                if(results.length == 0)
-                {
-                    onError({sqlMessage: "no match."}, res);
-                    return;
-                }
-                res.json(results[0]);
+        let query = `SELECT * FROM days WHERE date='${req.headers.date}'`;
+        sql.query(query, function (error, results) {
+            if (error) {
+                onError(error, res);
+                return;
             }
-        );        
+            res.json(results);
+        });   
     },
     getRandomDay : async function(req, res, next) {
         if(!simpleAuth(req, res)) return;
@@ -97,7 +93,7 @@ module.exports = {
 
         let query = `
             INSERT INTO days (date, text, feeling, last_modify) 
-            VALUES (${req.body.date},${sql.escape(req.body.text)},${req.body.feeling},'${time().format("YYYY-MM-DD")}')`;
+            VALUES ('${req.body.date}',${sql.escape(req.body.text)},${req.body.feeling},'${time().format("YYYY-MM-DD")}')`;
         sql.query(query, function (error, results, fields) {
             if (error) {
                 onError(error, res);

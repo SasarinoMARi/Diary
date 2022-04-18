@@ -22,7 +22,7 @@ app.use(express.json())
  * API Endpoints
  */
 app.post('/getDays', router.getDays);
-app.post('/getDay', router.getDay);
+app.get('/getDaysWithDate', router.getDaysWithDate);
 app.get('/getRandomDay', router.getRandomDay);
 app.post('/modifyDay', router.modifyDay);
 app.post('/createDay', router.createDay);
