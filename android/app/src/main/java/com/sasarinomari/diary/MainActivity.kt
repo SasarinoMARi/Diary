@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this@MainActivity, CorrectingRandomDayActivity::class.java)
             resultLauncher.launch(i)
         }
+        button_search_keyword.setOnClickListener {
+            val i = Intent(this@MainActivity, SearchKeywordActivity::class.java)
+            resultLauncher.launch(i)
+        }
 
         getDiary()
     }

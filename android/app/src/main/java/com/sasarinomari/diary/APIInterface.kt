@@ -15,6 +15,8 @@ interface APIInterface {
     fun getDaysWithDate(@Header("key") token:String, @Header("date") date:String): Call<Array<DiaryModel>>
     @GET("getRandomDay")
     fun getRandomDay(@Header("key") token:String, @Header("isFindingCorrectionTarget") isFindingCorrectionTarget: Boolean): Call<DiaryModel>
+    @POST("getDayWithKeyword")
+    fun getDayWithKeyword(@Header("key") token:String, @Body body: GetDayKeywordParameter): Call<Array<DiaryModel>>
     @POST("createDay")
     fun createDay(@Header("key") token:String, @Body body: DiaryModel): Call<JsonObject>
     @POST("modifyDay")
@@ -23,8 +25,8 @@ interface APIInterface {
     fun deleteDay(@Header("key") token:String, @Body body: DiaryModel): Call<JsonObject>
 
     companion object {
-        private val BASE_URL = ""
-        const val token: String = ""
+        private val BASE_URL = "http://gVmirwDh7wcUpx.iptime.org:5613"
+        const val token: String = "GMh*nQc4f?tPw>"
 
         private val gson = GsonBuilder()
             .setLenient()
