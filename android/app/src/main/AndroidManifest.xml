@@ -12,8 +12,10 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/Theme.Diary">
-
-        <activity android:name=".DayDetailActivity"/>
+        <activity
+            android:name=".SearchKeywordActivity"
+            android:exported="false" />
+        <activity android:name=".DayDetailActivity" />
         <activity
             android:name=".DayWriteActivity"
             android:windowSoftInputMode="adjustResize">

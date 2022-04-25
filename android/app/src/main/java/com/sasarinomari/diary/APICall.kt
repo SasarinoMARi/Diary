@@ -45,6 +45,27 @@ abstract class APICall {
         })
     }
 
+    fun getDayWithKeyword(keyword: String, callback: (Array<DiaryModel>)->Unit) {
+        val parameter = GetDayKeywordParameter()
+        parameter.keyword = keyword
+        val call = APIInterface.api.getDayWithKeyword(APIInterface.token, parameter)
+        call.enqueue(object : Callback<Array<DiaryModel>> {
+            override fun onResponse(call: Call<Array<DiaryModel>>, response: Response<Array<DiaryModel>>) {
+                if (response.isSuccessful) {
+                    val result = response.body()!!
+                    callback(result)
+                } else {
+                    onError("${response.code()} : ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Array<DiaryModel>>, t: Throwable) {
+                onError(t.toString())
+            }
+        })
+    }
+
+
     fun getRandomDay(isFindingCorrectionTarget: Boolean, callback: (DiaryModel)->Unit) {
         val call = APIInterface.api.getRandomDay(APIInterface.token, isFindingCorrectionTarget)
         call.enqueue(object : Callback<DiaryModel> {
