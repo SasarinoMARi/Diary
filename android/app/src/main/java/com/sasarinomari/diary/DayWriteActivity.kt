@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.DatePicker
 import android.widget.Toast
@@ -77,6 +78,7 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
                 }
             }
 
+            button_delete.visibility = View.INVISIBLE
         }
         else {
             origin?.let { diary ->
@@ -94,6 +96,22 @@ class DayWriteActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener
                         setResult(RESULT_OK, i)
                         finish()
                     }
+                }
+
+                button_delete.visibility = View.VISIBLE
+                button_delete.setOnClickListener {
+                    val adb= AlertDialog.Builder(this)
+                    adb.setTitle(getString(R.string.DeleteConfirmDialog))
+                    adb.setPositiveButton(getString(R.string.OK)) { dialog, which ->
+                        api.deleteDay(diary.idx) {
+                            setResult(-2)
+                            finish()
+                        }
+                    }
+                    adb.setNegativeButton(getString(R.string.Cancel)) { dialog, which ->
+                        //finish()
+                    }
+                    adb.show()
                 }
             }
         }
