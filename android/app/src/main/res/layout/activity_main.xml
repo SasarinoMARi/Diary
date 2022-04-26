@@ -46,7 +46,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="돌아보기"
+                    android:text="@string/Lookback"
                     android:textColor="#fff"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -69,7 +69,30 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="첨삭하기"
+                    android:text="@string/Correction"
+                    android:textColor="#fff"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_search_keyword"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/magnify" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Search"
                     android:textColor="#fff"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -102,7 +125,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="기억하기"
+                    android:text="@string/Remember"
                     android:textColor="#fff"
                     android:textSize="10sp" />
             </LinearLayout>

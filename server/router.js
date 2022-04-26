@@ -85,6 +85,25 @@ module.exports = {
                 res.json(results[0]);
         });      
     },
+    getDayWithKeyword : async function(req, res, next) {
+        if(!simpleAuth(req, res)) return;
+
+        var keyword = req.body.keyword;
+        if(!keyword) keyword = '';
+
+        console.log(`[SEARCH DAY] keyword : ${keyword}`)
+        sql.query(
+            `SELECT * FROM days WHERE text like '%${keyword}%' ORDER BY date desc`, function (error, results, fields) {
+                if (error) {
+                    onError(error, res);
+                    return;
+                }
+                if(results.length == 0) {
+                    res.json([]);
+                }
+                res.json(results);
+        });      
+    },
     createDay: async function (req, res, next) {
         if(!simpleAuth(req, res)) return;
         console.log(`[CREATE DAY] ${req.body.date}`);
