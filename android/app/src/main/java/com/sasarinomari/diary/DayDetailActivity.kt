@@ -23,12 +23,18 @@ class DayDetailActivity : AppCompatActivity() {
     private val conv = DateConverter()
     private val resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) {
-            if(it.resultCode == RESULT_OK) {
-                val diary = Gson().fromJson(it.data?.getStringExtra("diary"), DiaryModel::class.java)
-                if(diary!=null) {
-                    initializeViewWithDiary(diary)
+            when (it.resultCode) {
+                RESULT_OK -> {
+                    val diary = Gson().fromJson(it.data?.getStringExtra("diary"), DiaryModel::class.java)
+                    if(diary!=null) {
+                        initializeViewWithDiary(diary)
+                    }
+                    this@DayDetailActivity.setResult(RESULT_OK)
                 }
-                this@DayDetailActivity.setResult(RESULT_OK)
+                -2 -> {
+                    setResult(RESULT_OK)
+                    finish()
+                }
             }
         }
 

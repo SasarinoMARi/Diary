@@ -15,7 +15,7 @@ class CorrectingRandomDayActivity : AppCompatActivity() {
     }
     private val resultLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()) {
-            if(it.resultCode == RESULT_OK) {
+            if(it.resultCode == RESULT_OK || it.resultCode == -2) {
                 setResult(RESULT_OK)
             }
             finish()

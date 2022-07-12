@@ -93,6 +93,20 @@
                     android:text="@string/apply"
                     android:textColor="@color/white" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/button_delete"
+                android:layout_marginStart="10dp"
+                style="@style/Theme.Diary.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Delete"
+                    android:textColor="@color/white" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
