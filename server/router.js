@@ -75,7 +75,13 @@ module.exports = {
     getRandomDay: async function (conn) {
         simpleAuth(conn, () => {
 
-            var mode = conn.header.isFindingCorrectionTarget;
+            var mode = null;
+            try {
+                mode = conn.header.isFindingCorrectionTarget;
+            } catch (e){
+                console.log(e);
+            }
+            
             var isFindingCorrectionTarget = "";
             if (mode) isFindingCorrectionTarget = "last_modify ASC,"
 
