@@ -9,3 +9,13 @@ CREATE TABLE `days` (
 	PRIMARY KEY (`idx`)
 )
 COLLATE='utf8_general_ci';
+
+CREATE TABLE `blacklist` (
+	`idx` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+	`last_connected` DATETIME NOT NULL,
+	`address` VARCHAR(64) NOT NULL,
+	`description` TEXT DEFAULT NULL,
+	PRIMARY KEY (`idx`),
+	UNIQUE KEY (`address`)
+)
+COLLATE='utf8_general_ci';
