@@ -25,8 +25,8 @@ interface APIInterface {
     fun deleteDay(@Header("key") token:String, @Body body: DiaryModel): Call<JsonObject>
 
     companion object {
-        private val BASE_URL = "http://gVmirwDh7wcUpx.iptime.org:5613"
-        const val token: String = "GMh*nQc4f?tPw>"
+        private val BASE_URL = ""
+        const val token: String = ""
 
         private val gson = GsonBuilder()
             .setLenient()
